@@ -1,7 +1,7 @@
 class HomeState {
   final int counterA;
   final int counterB;
-  HomeState({this.counterA = 0, this.counterB = 0});
+  const HomeState({this.counterA = 0, this.counterB = 0});
 
   HomeState copyWith({int? counterA, int? counterB}) {
     return HomeState(

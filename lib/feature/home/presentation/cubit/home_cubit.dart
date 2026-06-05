@@ -1,8 +1,9 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeState());
+  HomeCubit() : super(const HomeState());
   void incrementA() {
     emit(state.copyWith(counterA: state.counterA + 1));
   }

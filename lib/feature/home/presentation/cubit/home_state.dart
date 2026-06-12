@@ -9,4 +9,7 @@ class HomeState {
       counterB: counterB ?? this.counterB,
     );
   }
+
+  @override
+  String toString() => 'HomeState(counterA: $counterA, counterB: $counterB)';
 }

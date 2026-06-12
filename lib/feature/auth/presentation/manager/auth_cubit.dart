@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:state_brainer_avr/feature/auth/presentation/manager/auth_state.dart';
@@ -8,13 +9,22 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> register({
     required String email,
     required String password,
+    required String fullName,
   }) async {
     emit(state.copyWith(statusRegister: AuthStatus.loading));
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      FirebaseFirestore.instance.collection('users').doc(user.user!.uid).set({
+        'uid': user.user!.uid,
+        'fullName': fullName,
+        'email': email,
+        'createdAt': DateTime.now(),
+      });
+
+      print('user----- : $user');
       emit(state.copyWith(statusRegister: AuthStatus.success));
     } catch (e) {
       print('Registration failed: $e');

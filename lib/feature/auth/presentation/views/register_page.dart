@@ -14,10 +14,12 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController fullNameController = TextEditingController();
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    fullNameController.dispose();
     super.dispose();
   }
 
@@ -27,6 +29,10 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          TextField(
+            controller: fullNameController,
+            decoration: const InputDecoration(hintText: 'Full Name'),
+          ),
           TextField(
             controller: emailController,
             decoration: const InputDecoration(hintText: 'Email'),
@@ -73,6 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   context.read<AuthCubit>().register(
                     email: emailController.text,
                     password: passwordController.text,
+                    fullName: fullNameController.text,
                   );
                 },
                 child: const Text('Register'),

@@ -4,8 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:state_brainer_avr/feature/auth/presentation/manager/auth_cubit.dart';
 import 'package:state_brainer_avr/feature/auth/presentation/manager/auth_state.dart';
 import 'package:state_brainer_avr/feature/auth/presentation/views/register_page.dart';
-import 'package:state_brainer_avr/feature/home/presentation/cubit/home_cubit.dart';
-import 'package:state_brainer_avr/feature/home/presentation/views/home_page.dart';
+
+import 'package:state_brainer_avr/feature/home/presentation/views/start_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -63,12 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                 );
                 Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => BlocProvider(
-                      create: (context) => HomeCubit(),
-                      child: const CounterPage(),
-                    ),
-                  ),
+                  MaterialPageRoute(builder: (context) => StartPage()),
                   (route) => false,
                 );
               }
